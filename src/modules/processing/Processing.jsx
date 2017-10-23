@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Property from './Property.jsx';
 import Attribute from './Attribute.jsx';
+import NodeNavigatorComponent from './../visualization/NodeNavigatorComponent.jsx';
 class Processing extends Component {
   constructor(props){
     super(props);
@@ -12,7 +13,7 @@ class Processing extends Component {
     this.state = {
       properties: propps,
       attributes: attributes,
-      selected: -1,
+      selected: "",
     }
     this.renderProperties = this.renderProperties.bind(this);
     this.renderAttributes = this.renderAttributes.bind(this);
@@ -29,7 +30,10 @@ class Processing extends Component {
     this.setState({ attributes: p });
 
   }
+  updateCallback(filteredData) {
+    console.log('updateCallback');
 
+  }
   renderProperties(){
     return this.state.properties.map((property, i) => {
       return (<Property name={property} key={i} id={i} setID={this.setID}></Property>);
@@ -40,6 +44,9 @@ class Processing extends Component {
       return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.deleteAttribute}></Attribute>);
     })
   }
+  show(){
+    this.setState({show:true});
+  }
   render(){
     return(
       <div>
@@ -48,7 +55,7 @@ class Processing extends Component {
           this.renderProperties()
         }
         {
-          this.state.selected !== -1 ? "Selected "+this.state.selected : "No id selected"
+          this.state.selected !== "" ? "Selected "+this.state.selected : "No id selected"
         }
         </div>
         <div>
@@ -56,6 +63,19 @@ class Processing extends Component {
         {
           this.renderAttributes()
         }
+        </div>
+        <div>
+          <button onClick={this.show.bind(this)}>show</button>
+        </div>
+        <div>
+          { this.state.show ?
+            <NodeNavigatorComponent
+              attributes={this.state.attributes}
+              data={this.props.data}
+              updateCallback={this.updateCallback.bind(this)}>
+            </NodeNavigatorComponent>
+            : ""
+          }
         </div>
       </div>
     )

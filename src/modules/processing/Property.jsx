@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Property extends Component {
   onClickProperty(){
     console.log('onClickProperty');
-    this.props.setID(this.props.id)
+    this.props.setID(this.props.name)
   }
   render(){
     return(

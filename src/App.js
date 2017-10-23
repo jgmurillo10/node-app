@@ -24,10 +24,7 @@ class App extends Component {
   setData(data){
     this.setState({ data: data})
   }
-  updateCallback(filteredData) {
-    console.log('updateCallback');
 
-  }
   render() {
     return (
       <div className="container">
@@ -55,12 +52,7 @@ class App extends Component {
               <Processing
                 data={this.state.data}
                 >
-
               </Processing>
-              {/* <NodeNavigatorComponent
-                data={this.state.data}
-                updateCallback={this.updateCallback.bind(this)}>
-              </NodeNavigatorComponent> */}
             </div>
           }
           </div>
