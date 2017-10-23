@@ -1,0 +1,10 @@
+.loadDataButton {
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  width: 60%;
+  height: 40vh;
+  font-size: 2em;
+}
+.loadDataButton:hover {
+  background-color: rgba(0,0,0,0.8);
+}
