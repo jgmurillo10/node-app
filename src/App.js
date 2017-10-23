@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Load from './modules/load/Load.jsx';
+import Processing from './modules/processing/Processing.jsx';
 import './modules/load/load.css';
 import NodeNavigatorComponent from './modules/visualization/NodeNavigatorComponent.jsx';
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
   }
   updateCallback(filteredData) {
     console.log('updateCallback');
+
   }
   render() {
     return (
@@ -47,13 +49,18 @@ class App extends Component {
           <div>
           {
             this.state.data.length===0 ?
-            <h3>Please wait while we download 130k records</h3>
+            ""
             :
             <div>
-              <NodeNavigatorComponent
+              <Processing
+                data={this.state.data}
+                >
+
+              </Processing>
+              {/* <NodeNavigatorComponent
                 data={this.state.data}
                 updateCallback={this.updateCallback.bind(this)}>
-              </NodeNavigatorComponent>
+              </NodeNavigatorComponent> */}
             </div>
           }
           </div>

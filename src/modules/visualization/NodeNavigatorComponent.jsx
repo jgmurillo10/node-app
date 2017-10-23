@@ -5,11 +5,11 @@ let d3 = require("d3");
 class NodeNavigatorComponent extends Component {
   constructor(props){
     super(props);
-    console.log(this.props.data[0]);
     let propps = []
     for (let prop in this.props.data[0]){
       console.log(prop);
-      propps.push(prop)
+      propps.push(prop);
+
     }
     this.state = {
       properties: propps
@@ -23,8 +23,6 @@ class NodeNavigatorComponent extends Component {
     this.nn = new NodeNavigator(this.target, 600)
       .id("car-id")
       .updateCallback(this.props.updateCallback);
-    this.nn.addCategoricalAttrib("name")
-      .addCategoricalAttrib("data");
       this.state.properties.map((d,i)=>{
         console.log(d,i);
         this.nn.addCategoricalAttrib(d);
