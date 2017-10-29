@@ -21,6 +21,7 @@ class Home extends Component {
               <li>1. Upload a dataset</li>
               <li>2. Choose the dataset ID</li>
               <li>3. Choose the attributes to display</li>
+              <li>4. Use the NodeNavigator</li>
             </ul>
           </div>
         </div>
