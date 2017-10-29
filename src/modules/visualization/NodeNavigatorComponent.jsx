@@ -30,11 +30,25 @@ class NodeNavigatorComponent extends Component {
     if (newProps.data.length !== this.props.data.length)
       this.nn.data(newProps.data);
   }
+  getBreadcrumb(){
+    let i  = 4;
+    let dir = ['/','/preprocessing/load/','/preprocessing/id','/preprocessing/attributes','/visualization'];
+    let names = ['home', 'load','id','attributes','visualization']
+    return dir.map((path,it) => {
+      if (it >= i) {
+        return;
+      }
+      return (<Link className="btn" to={path}>{'/ step '+ it + ': '  +names[it]}</Link>);
+    });
+  }
   render() {
     console.log("NodeNavigatorComponent render" );
     return (
       <div>
-        <Link to={'/preprocessing/attributes'}>Back</Link>
+        <div className="breadcrumb">
+          {this.getBreadcrumb()}
+        </div>
+        {/* <Link to={'/preprocessing/attributes'}>Back</Link> */}
         <div
           className="NodeNavigatorComponent"
           ref={(target) => this.target = target }>

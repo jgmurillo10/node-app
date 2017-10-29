@@ -14,7 +14,7 @@ class Step extends Component {
     let dir = ['/','/preprocessing/load/','/preprocessing/id','/preprocessing/attributes','/visualization'];
     let names = ['home', 'load','id','attributes','visualization']
     return dir.map((path,it) => {
-      if (it >= i || it === 0) {
+      if (it >= i) {
         return;
       }
       return (<Link className="btn" to={path}>{'/ step '+ it + ': '  +names[it]}</Link>);
