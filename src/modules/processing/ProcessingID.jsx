@@ -5,10 +5,17 @@ class ProcessingID extends Component {
   constructor(props){
     super(props);
     this.renderProperties = this.renderProperties.bind(this);
+    this.state = {
+      enable: false,
+    }
+  }
+  setID(id){
+    this.setState({ enable:true });
+    this.props.setID(id);
   }
   renderProperties(){
     return this.props.properties.map((property, i) => {
-      return (<Property name={property} key={i} id={i} setID={this.props.setID}></Property>);
+      return (<Property name={property} key={i} id={i} setID={this.setID.bind(this)}></Property>);
     })
   }
   render(){
@@ -20,7 +27,9 @@ class ProcessingID extends Component {
           text={'please select the id'}
           component={this.renderProperties()}
           next={'/preprocessing/attributes'}
-          back={'/preprocessing/load'}>
+          back={'/preprocessing/load'}
+          enable={this.state.enable}
+          msg={'You must select an ID'}>
         </Step>
       </div>
     )

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import NodeNavigator from "./NodeNavigator.js";
+import { Link } from 'react-router-dom';
 let d3 = require("d3");
 class NodeNavigatorComponent extends Component {
   constructor(props){
@@ -32,9 +33,15 @@ class NodeNavigatorComponent extends Component {
   render() {
     console.log("NodeNavigatorComponent render" );
     return (
-      <div
-        className="NodeNavigatorComponent"
-        ref={(target) => this.target = target }></div>);
+      <div>
+        <Link to={'/preprocessing/attributes'}>Back</Link>
+        <div
+          className="NodeNavigatorComponent"
+          ref={(target) => this.target = target }>
+        </div>
+
+      </div>
+      );
   }
 }
 NodeNavigatorComponent.propTypes = {

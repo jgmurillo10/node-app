@@ -3,6 +3,7 @@ import Home from './home/Home.jsx';
 import Load from './load/Load.jsx';
 import ProcessingID from './processing/ProcessingID.jsx';
 import ProcessingAttributes from './processing/ProcessingAttributes.jsx';
+import NodeNavigatorComponent from './visualization/NodeNavigatorComponent.jsx';
 import './load/load.css';
 import './../index.css';
 import { Switch, Route } from 'react-router-dom';
@@ -20,6 +21,7 @@ class Main extends Component {
       selected: "",
       properties: [],
       attributes: [],
+      deleted: [],
     }
   }
   setData(data){
@@ -35,10 +37,28 @@ class Main extends Component {
    })
 
   }
+  updateCallback(){
+    console.log('updateCallback');
+  }
   deleteAttribute(i){
     let p = this.state.attributes;
-    p.splice(i,1);
-    this.setState({ attributes: p });
+    let d = this.state.deleted;
+    let del = p.splice(i,1);
+    d.push(del);
+    this.setState({
+      attributes: p,
+      deleted: d
+    });
+  }
+  addAttribute(i){
+    let p = this.state.attributes;
+    let d = this.state.deleted;
+    let add = d.splice(i,1);
+    p.push(add)
+    this.setState({
+      attributes: p,
+      deleted: d
+    })
   }
   setID(id){
     this.setState({ selected: id });
@@ -62,8 +82,18 @@ class Main extends Component {
             <ProcessingAttributes {...props}
               data={this.state.data}
               deleteAttribute={this.deleteAttribute.bind(this)}
-              attributes={this.state.attributes}/>
+              addAttribute={this.addAttribute.bind(this)}
+              attributes={this.state.attributes}
+              deleted={this.state.deleted}/>
           )}/>
+        <Route path='/visualization' render={(props) => (
+          <NodeNavigatorComponent
+            attributes={this.state.attributes}
+            data={this.state.data}
+            id={this.state.selected}
+            updateCallback={this.updateCallback.bind(this)}>
+          </NodeNavigatorComponent>
+            )}/>
 
         </Switch>
       </main>

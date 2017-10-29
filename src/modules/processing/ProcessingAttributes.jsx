@@ -13,6 +13,12 @@ class ProcessingAttributes extends Component {
       return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.props.deleteAttribute}></Attribute>);
     })
   }
+  renderDeleted(){
+    return this.props.deleted.map((attribute, i) => {
+      return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.props.addAttribute}></Attribute>);
+    })
+  }
+
   show(){
     this.setState({show:true});
   }
@@ -28,9 +34,11 @@ class ProcessingAttributes extends Component {
           text={'please select the attributes to display'}
           component={this.renderAttributes()}
           next={'/visualization'}
-          back={'/preprocessing/id'}>
+          back={'/preprocessing/id'}
+          enable={true}
+          msg={null}>
         </Step>
-
+        {this.renderDeleted()}
         <div>
           <button onClick={this.show.bind(this)}>show</button>
         </div>

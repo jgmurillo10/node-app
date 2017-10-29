@@ -6,7 +6,8 @@ class Load extends Component {
   constructor(props){
     super(props);
     this.state = {
-      file: null
+      file: null,
+      enable: false,
     }
     this.handleDataset = this.handleDataset.bind(this)
   }
@@ -27,6 +28,7 @@ class Load extends Component {
       try {
         values = vega.read(lEvent.target.result, {type: format});
         this.props.setData(values);
+        this.setState({enable:true})
         console.log(values);
       } catch (err) {
         window.alert(err.message);
@@ -48,7 +50,9 @@ class Load extends Component {
         component={comp}
         action={this.handleDataset}
         next={'/preprocessing/id'}
-        back={'/'}>
+        back={'/'}
+        enable={this.state.enable}
+        msg={'You must upload a dataset.'}>
       </Step>
         <div>
 

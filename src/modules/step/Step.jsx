@@ -28,8 +28,11 @@ class Step extends Component {
           </div>
         </div>
         <div className="step-footer">
-          <Link className="step-button" to={this.props.back}> {'<< back'}</Link>
-        <Link className="step-button" to={this.props.next}>{'next >>'}</Link>
+          <Link className="btn step-button" to={this.props.back}> {'<< back'}</Link>
+      {
+        this.props.enable ? <Link className="btn step-button" to={this.props.next}>{'next >>'}</Link> : this.props.msg
+      }
+
         </div>
       </div>
     )
