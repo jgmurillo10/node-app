@@ -26,13 +26,23 @@ class Step extends Component {
           <div>
             {this.props.component}
           </div>
-          <hr></hr>
-        <div>
-          {this.props.responseMsg}
-        </div>
           <div>
-            {this.props.response}
+            {
+              this.props.enable
+              ?
+              <div>
+                <hr></hr>
+                <div>
+                  {this.props.responseMsg}
+                </div>
+                <div>
+                  {this.props.response}
+                </div>
+              </div>
+              : ""
+            }
           </div>
+
         </div>
         <div className="step-footer">
           <Link className="btn step-button" to={this.props.back}> {'<< back'}</Link>
