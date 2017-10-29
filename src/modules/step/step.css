@@ -1,0 +1,43 @@
+.step-container {
+  background-color: rgba(0,23,3,0.1);
+  border-radius: 3em;
+  padding: 2em 2em 0 2em;
+  text-align: center;
+  min-height: 50vh;
+}
+.step-header {
+
+}
+.step-content{
+
+}
+.step-footer{
+  margin-top: 2em;
+  padding-bottom: 1em;
+}
+.step-button{
+  background-color: black;
+  color: white;
+  padding: 1em;
+}
+.step-button:hover{
+  background-color: rgba(0,23,3,0.4);
+  color: black;
+}
+.step-title{
+  text-transform: lowercase;
+  font-weight: 100;
+}
+.step-number-container{
+  display: flex;
+  background-color: lightgrey;
+  border-radius: 50%;
+  width: 5em;
+  display: table-cell;
+  vertical-align: middle;
+  align-items: center;
+  align-content: center;
+}
+.step-number{
+  font-size: 2em;
+}

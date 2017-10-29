@@ -13,7 +13,7 @@ class NodeNavigatorComponent extends Component {
   componentDidMount() {
     console.log("NodeNavigatorComponent did mount");
     this.nn = new NodeNavigator(this.target, 600)
-      .id("car-id")
+      .id(this.props.id)
       .updateCallback(this.props.updateCallback);
       this.props.attributes.map((d,i)=>{
         console.log(d,i);

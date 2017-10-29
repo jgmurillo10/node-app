@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as vega from 'vega';
+import { Link } from 'react-router-dom';
+import Step from './../step/Step.jsx';
 class Load extends Component {
   constructor(props){
     super(props);
@@ -9,6 +11,7 @@ class Load extends Component {
     this.handleDataset = this.handleDataset.bind(this)
   }
   handleDataset(event){
+    console.log('handleDataset');
     const reader = new FileReader();
     const file =  event.target.files[0];
     if(file == null){
@@ -35,25 +38,31 @@ class Load extends Component {
     reader.readAsText(file);
   }
   render() {
+    const comp = (<input accept=".csv,.json" onChange={this.handleDataset} type="file"/>);
     return (
       <div>
+      <Step
+        step={1}
+        name={'Add dataset'}
+        text={'please select json or csv file'}
+        component={comp}
+        action={this.handleDataset}
+        next={'/preprocessing/id'}
+        back={'/'}>
+      </Step>
         <div>
-          <div>Add dataset</div>
-        <p><strong>File</strong> <input accept=".csv,.json" onChange={this.handleDataset} type="file"/> </p>
+
+          {
+            this.state.file ?
+            <div>
+              <p>{this.state.file.name}</p>
+              <p>{this.state.file.type}</p>
+              <p>{this.state.file.size}</p>
+            </div>
+            :
+            ""
+          }
         </div>
-        {
-          this.state.file ?
-          <div>
-            <p>{this.state.file.name}</p>
-            <p>{this.state.file.type}</p>
-            <p>{this.state.file.size}</p>
-          </div>
-          :
-          ""
-        }
-        <button onClick={this.props.hide}>
-          Submit
-        </button>
       </div>
     );
   }
