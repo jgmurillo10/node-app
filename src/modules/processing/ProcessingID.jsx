@@ -13,9 +13,22 @@ class ProcessingID extends Component {
     this.setState({ enable:true });
     this.props.setID(id);
   }
+  componentDidMount(){
+    if (this.props.selected){
+      this.setState({enable:true});
+    }
+    else{
+      this.setState({enable:false});
+    }
+  }
   renderProperties(){
     return this.props.properties.map((property, i) => {
-      return (<Property name={property} key={i} id={i} setID={this.setID.bind(this)}></Property>);
+      if (this.props.selected && this.props.selected === property){
+            return (<Property name={property} key={i} id={i} setID={this.setID.bind(this)} selected={true}></Property>);
+      } else{
+          return (<Property name={property} key={i} id={i} setID={this.setID.bind(this)} selected={false}></Property>);
+      }
+
     })
   }
   render(){
@@ -23,15 +36,14 @@ class ProcessingID extends Component {
       <div>
         <Step
           step={2}
-          name={'ID'}
-          text={'please select the id of your dataset'}
+          name={'Select ID'}
+          text={'please select the id (just one) of your dataset'}
           component={this.renderProperties()}
           next={'/preprocessing/attributes'}
           back={'/preprocessing/load'}
           enable={this.state.enable}
           msg={'You must select an ID'}
-          response={this.props.selected}
-          responseMsg={'ID selected'}>
+          >
         </Step>
       </div>
     )

@@ -22,6 +22,7 @@ class Main extends Component {
       properties: [],
       attributes: [],
       deleted: [],
+      file: null,
     }
   }
   setData(data){
@@ -63,6 +64,9 @@ class Main extends Component {
   setID(id){
     this.setState({ selected: id });
   }
+  setFile(file){
+    this.setState({ file: file });
+  }
   render(){
     const extraProps = { color: 'red' }
     return (
@@ -70,7 +74,10 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/preprocessing/load' render={(props) => (
-            <Load {...props} setData={this.setData.bind(this)}/>
+            <Load {...props}
+              setData={this.setData.bind(this)}
+              setFile={this.setFile.bind(this)}
+              file={this.state.file}/>
           )}/>
           <Route path='/preprocessing/id' render={(props) => (
             <ProcessingID {...props}

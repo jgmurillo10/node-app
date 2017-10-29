@@ -6,7 +6,11 @@ class App extends Component {
       <div className="Main-app">
         <div className="container">
           <div className="App-title">
+            <h1 className="heading">
+                <a target="_blank" href="https://github.com/john-guerra/nodenavigator"> <i class="fa fa-2x fa-github" aria-hidden="true"> </i></a>
+              </h1>
             <h1 className="heading">NodeNavigator</h1>
+
           <hr></hr>
           </div>
           <Main/>

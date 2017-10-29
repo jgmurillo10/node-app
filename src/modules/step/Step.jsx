@@ -36,7 +36,7 @@ class Step extends Component {
           </div>
           <hr></hr>
           <div className="step-content">
-            <p>{this.props.text}</p>
+            <h4 className="step-response-msg">{this.props.text}</h4>
             <div>
               {this.props.component}
             </div>
@@ -46,9 +46,9 @@ class Step extends Component {
                 ?
                 <div>
                   <hr></hr>
-                <h3 className="step-response-msg">
+                <h4 className="step-response-msg">
                     {this.props.responseMsg}
-                  </h3>
+                  </h4>
                   <div>
                     {this.props.response}
                   </div>
@@ -59,10 +59,28 @@ class Step extends Component {
 
           </div>
           <div className="step-footer">
-            <Link className="btn step-button" to={this.props.back}> {'<< back'}</Link>
-        {
-          this.props.enable ? <Link className="btn step-button" to={this.props.next}>{'next >>'}</Link> : this.props.msg
-        }
+            {
+              this.props.enable ?
+              "" :
+              <div class="alert alert-warning">
+                <strong>Warning!</strong> {this.props.msg}
+              </div>
+
+            }
+            <div>
+            <Link className="btn step-button" to={this.props.back}>
+              <i class="fa fa-2x fa-angle-double-left" aria-hidden="true"></i>
+            </Link>
+            {
+              this.props.enable ?
+              <Link className="btn step-button" to={this.props.next}>
+                <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+              </Link> :
+              <div className="btn step-disabled">
+                <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+              </div>
+            }
+            </div>
 
           </div>
         </div>

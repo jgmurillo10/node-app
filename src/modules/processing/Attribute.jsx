@@ -7,9 +7,9 @@ class Attribute extends Component {
   }
   render(){
     return(
-      <div onClick={this.onClickAttribute.bind(this)}>
-        <button className="attribute" >{this.props.name}</button>
-      <button className="attribute-button"> {this.props.tag} </button>
+      <div className="cursor" onClick={this.onClickAttribute.bind(this)}>
+        <button  className={this.props.sty + " attribute" }>{this.props.name}</button>
+        <button  className={this.props.sty + " attribute-button"}> {this.props.tag} </button>
       </div>
     )
   }

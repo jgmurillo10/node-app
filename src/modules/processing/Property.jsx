@@ -8,12 +8,19 @@ class Property extends Component {
   render(){
     return(
       <div>
-        <button
-          className="attribute"
+        <div
+          className="property cursor"
           onClick={this.onClickProperty.bind(this)}
         >
-          {this.props.name}
-        </button>
+          {
+            this.props.selected ?
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            :
+            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          }
+          {' '+this.props.name}
+
+        </div>
       </div>
     )
   }
