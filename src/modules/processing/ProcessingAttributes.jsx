@@ -18,10 +18,6 @@ class ProcessingAttributes extends Component {
       return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.props.addAttribute}></Attribute>);
     })
   }
-
-  show(){
-    this.setState({show:true});
-  }
   updateCallback(){
     console.log('updateCallback');
   }
@@ -36,23 +32,10 @@ class ProcessingAttributes extends Component {
           next={'/visualization'}
           back={'/preprocessing/id'}
           enable={true}
-          msg={null}>
+          msg={null}
+          response={this.renderDeleted()}
+          responseMsg={'Attributes deleted. Click one to add'}>
         </Step>
-        {this.renderDeleted()}
-        <div>
-          <button onClick={this.show.bind(this)}>show</button>
-        </div>
-        {/* <div>
-          { this.state.show ?
-            <NodeNavigatorComponent
-              attributes={this.state.attributes}
-              data={this.props.data}
-              id={this.state.selected}
-              updateCallback={this.updateCallback.bind(this)}>
-            </NodeNavigatorComponent>
-            : ""
-          }
-        </div> */}
       </div>
     )
   }

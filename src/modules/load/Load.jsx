@@ -8,11 +8,13 @@ class Load extends Component {
     this.state = {
       file: null,
       enable: false,
-    }
-    this.handleDataset = this.handleDataset.bind(this)
-  }
+    };
+    this.state.response = {};
+    this.handleDataset = this.handleDataset.bind(this);
+    this.renderResponse = this.renderResponse.bind(this);
+  };
+
   handleDataset(event){
-    console.log('handleDataset');
     const reader = new FileReader();
     const file =  event.target.files[0];
     if(file == null){
@@ -29,7 +31,6 @@ class Load extends Component {
         values = vega.read(lEvent.target.result, {type: format});
         this.props.setData(values);
         this.setState({enable:true})
-        console.log(values);
       } catch (err) {
         window.alert(err.message);
       }
@@ -38,6 +39,22 @@ class Load extends Component {
     };
 
     reader.readAsText(file);
+  }
+  renderResponse(){
+    if (this.state.file){
+
+      return (
+          <div>
+            <p>{this.state.file.name}</p>
+            <p>{this.state.file.type}</p>
+            <p>{this.state.file.size}</p>
+          </div>
+    );
+  }
+    else {
+      return null
+    }
+
   }
   render() {
     const comp = (<input accept=".csv,.json" onChange={this.handleDataset} type="file"/>);
@@ -52,21 +69,11 @@ class Load extends Component {
         next={'/preprocessing/id'}
         back={'/'}
         enable={this.state.enable}
-        msg={'You must upload a dataset.'}>
+        msg={'You must upload a dataset.'}
+        response={this.renderResponse()}
+        responseMsg={'Dataset selected'}>
       </Step>
-        <div>
 
-          {
-            this.state.file ?
-            <div>
-              <p>{this.state.file.name}</p>
-              <p>{this.state.file.type}</p>
-              <p>{this.state.file.size}</p>
-            </div>
-            :
-            ""
-          }
-        </div>
       </div>
     );
   }

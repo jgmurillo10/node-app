@@ -76,7 +76,8 @@ class Main extends Component {
             <ProcessingID {...props}
               data={this.state.data}
               setID={this.setID.bind(this)}
-              properties={this.state.properties}/>
+              properties={this.state.properties}
+              selected={this.state.selected}/>
           )}/>
         <Route path='/preprocessing/attributes' render={(props) => (
             <ProcessingAttributes {...props}

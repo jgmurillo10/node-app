@@ -29,7 +29,9 @@ class ProcessingID extends Component {
           next={'/preprocessing/attributes'}
           back={'/preprocessing/load'}
           enable={this.state.enable}
-          msg={'You must select an ID'}>
+          msg={'You must select an ID'}
+          response={this.props.selected}
+          responseMsg={'ID selected'}>
         </Step>
       </div>
     )
