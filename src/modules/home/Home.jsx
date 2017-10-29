@@ -25,7 +25,11 @@ class Home extends Component {
           </div>
         </div>
         <div className="pull-center">
-            <Link className="btn loadDataButton" aria-label="load data" to={'/preprocessing/load/'}>Let's get started.</Link>
+            <Link className="btn loadDataButton" aria-label="load data" to={'/preprocessing/load/'}>
+              <div className="button-container">
+                Let's get started.
+              </div>
+            </Link>
         </div>
       </div>
     )

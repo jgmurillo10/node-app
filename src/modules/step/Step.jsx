@@ -9,47 +9,62 @@ import { Switch, Route } from 'react-router-dom';
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 class Step extends Component {
-
+  getBreadcrumb(){
+    let i  = this.props.step;
+    let dir = ['/','/preprocessing/load/','/preprocessing/id','/preprocessing/attributes','/visualization'];
+    let names = ['home', 'load','id','attributes','visualization']
+    return dir.map((path,it) => {
+      if (it >= i || it === 0) {
+        return;
+      }
+      return (<Link className="btn" to={path}>{'/ step '+ it + ': '  +names[it]}</Link>);
+    });
+  }
   render(){
     return (
-      <div className="step-container">
-        <Link className="btn" to={'/'}> {'<< home'}</Link>
-        <div className="step-header row">
-          <div className="step-number-container col-md-1">
-            <div className="step-number">{this.props.step}</div>
-          </div>
-          <h1 className="step-title col-md-10">{this.props.name}</h1>
+      <div>
+        <div className="breadcrumb">
+          {this.getBreadcrumb()}
         </div>
-        <hr></hr>
-        <div className="step-content">
-          <p>{this.props.text}</p>
-          <div>
-            {this.props.component}
-          </div>
-          <div>
-            {
-              this.props.enable
-              ?
-              <div>
-                <hr></hr>
-                <div>
-                  {this.props.responseMsg}
-                </div>
-                <div>
-                  {this.props.response}
-                </div>
-              </div>
-              : ""
-            }
-          </div>
+        <div className="step-container">
 
-        </div>
-        <div className="step-footer">
-          <Link className="btn step-button" to={this.props.back}> {'<< back'}</Link>
-      {
-        this.props.enable ? <Link className="btn step-button" to={this.props.next}>{'next >>'}</Link> : this.props.msg
-      }
+          <div className="step-header row">
+            <div className="step-number-container col-md-1">
+              <div className="step-number">{this.props.step}</div>
+            </div>
+            <h1 className="step-title col-md-10">{this.props.name}</h1>
+          </div>
+          <hr></hr>
+          <div className="step-content">
+            <p>{this.props.text}</p>
+            <div>
+              {this.props.component}
+            </div>
+            <div>
+              {
+                this.props.enable
+                ?
+                <div>
+                  <hr></hr>
+                <h3 className="step-response-msg">
+                    {this.props.responseMsg}
+                  </h3>
+                  <div>
+                    {this.props.response}
+                  </div>
+                </div>
+                : ""
+              }
+            </div>
 
+          </div>
+          <div className="step-footer">
+            <Link className="btn step-button" to={this.props.back}> {'<< back'}</Link>
+        {
+          this.props.enable ? <Link className="btn step-button" to={this.props.next}>{'next >>'}</Link> : this.props.msg
+        }
+
+          </div>
         </div>
       </div>
     )

@@ -24,7 +24,7 @@ class ProcessingID extends Component {
         <Step
           step={2}
           name={'ID'}
-          text={'please select the id'}
+          text={'please select the id of your dataset'}
           component={this.renderProperties()}
           next={'/preprocessing/attributes'}
           back={'/preprocessing/load'}

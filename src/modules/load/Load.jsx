@@ -45,9 +45,9 @@ class Load extends Component {
 
       return (
           <div>
-            <p>{this.state.file.name}</p>
-            <p>{this.state.file.type}</p>
-            <p>{this.state.file.size}</p>
+            <p><strong>Name:</strong> {this.state.file.name}</p>
+            <p><strong>File type: </strong>{this.state.file.type}</p>
+            <p><strong>File size: </strong>{this.state.file.size}</p>
           </div>
     );
   }
@@ -63,13 +63,13 @@ class Load extends Component {
       <Step
         step={1}
         name={'Add dataset'}
-        text={'please select json or csv file'}
+        text={'please select *.json or *.csv file'}
         component={comp}
         action={this.handleDataset}
         next={'/preprocessing/id'}
         back={'/'}
         enable={this.state.enable}
-        msg={'You must upload a dataset.'}
+        msg={'You must upload a dataset before continue.'}
         response={this.renderResponse()}
         responseMsg={'Dataset selected'}>
       </Step>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './attribute.css';
 class Attribute extends Component {
   onClickAttribute(){
     console.log('onClickAttribute',this.props.id);
@@ -7,8 +8,8 @@ class Attribute extends Component {
   render(){
     return(
       <div onClick={this.onClickAttribute.bind(this)}>
-        <button>{this.props.id  + " : "+this.props.name}</button>
-        <button> X </button>
+        <button className="attribute" >{this.props.name}</button>
+      <button className="attribute-button"> {this.props.tag} </button>
       </div>
     )
   }

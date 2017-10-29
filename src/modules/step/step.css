@@ -26,19 +26,21 @@
   color: black;
 }
 .step-title{
-  text-transform: lowercase;
+  text-transform: uppercase;
   font-weight: 100;
 }
 .step-number-container{
   display: flex;
   background-color: lightgrey;
-  border-radius: 50%;
-  width: 5em;
-  display: table-cell;
-  vertical-align: middle;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
   align-items: center;
-  align-content: center;
 }
 .step-number{
-  font-size: 2em;
+  font-size: 1.5em;
+  margin: auto;
+}
+.step-response-msg{
+  font-weight: 100;
 }

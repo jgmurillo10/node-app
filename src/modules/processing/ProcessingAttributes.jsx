@@ -10,12 +10,26 @@ class ProcessingAttributes extends Component {
   }
   renderAttributes(){
     return this.props.attributes.map((attribute, i) => {
-      return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.props.deleteAttribute}></Attribute>);
+      return (
+        <Attribute
+          name={attribute}
+          key={i}
+          id={i}
+          deleteAttribute={this.props.deleteAttribute}
+          tag={'X'}>
+        </Attribute>);
     })
   }
   renderDeleted(){
     return this.props.deleted.map((attribute, i) => {
-      return (<Attribute name={attribute} key={i} id={i} deleteAttribute={this.props.addAttribute}></Attribute>);
+      return (
+        <Attribute
+          name={attribute}
+          key={i}
+          id={i}
+          deleteAttribute={this.props.addAttribute}
+          tag={'+'}>
+        </Attribute>);
     })
   }
   updateCallback(){
