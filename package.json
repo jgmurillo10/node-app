@@ -2,7 +2,7 @@
   "name": "node-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://john-guerra.github.io/NodeNavigator/demo",
+  "homepage": "https://jgmurillo10.github.io/node-app/build",
   "dependencies": {
     "d3": "^4.11.0",
     "material-ui": "^1.0.0-beta.19",
