@@ -18,7 +18,15 @@ class Home extends Component {
             <strong>NodeNavigator</strong> is a d3.js visualization widget to help summarizing, browsing and navigating large network visualizations.
             <p>Steps: </p>
             <ul>
-              <li>1. Upload a dataset</li>
+              <li>
+                <div>
+                  1. Upload a dataset
+                </div>
+                <div>
+                  <img src="step1.gif" alt="step one node navigator"></img>
+                </div>
+
+              </li>
               <li>2. Select the dataset ID</li>
               <li>3. Select the attributes to display</li>
               <li>4. Use the NodeNavigator</li>
