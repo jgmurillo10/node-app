@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import Load from './../load/Load.jsx';
 import { Link } from 'react-router-dom';
+
+
 class Home extends Component {
-  goToLoad(){
-    console.log('goToLoad');
-  }
+  state = {
+    checkedA: true,
+    checkedB: false,
+    checkedE: true,
+  };
+  handleChange = name => (event, checked) => {
+    this.setState({ [name]: checked });
+  };
   render() {
+
     return (
       <div>
         <div className="row">
@@ -16,6 +24,8 @@ class Home extends Component {
           </div>
           <div className="col-md-10">
             <strong>NodeNavigator</strong> is a d3.js visualization widget to help summarizing, browsing and navigating large network visualizations.
+            
+
             <p>Steps: </p>
             <ul>
               <li>

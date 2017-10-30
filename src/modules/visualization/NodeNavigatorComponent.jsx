@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import NodeNavigator from "./NodeNavigator.js";
 import { Link } from 'react-router-dom';
+import BasicTable from './BasicTable.jsx';
 let d3 = require("d3");
 class NodeNavigatorComponent extends Component {
   constructor(props){
@@ -17,7 +18,6 @@ class NodeNavigatorComponent extends Component {
       .id(this.props.id)
       .updateCallback(this.props.updateCallback);
       this.props.attributes.map((d,i)=>{
-        console.log(d,i);
         this.nn.addCategoricalAttrib(d);
       })
 
@@ -52,6 +52,15 @@ class NodeNavigatorComponent extends Component {
         <div
           className="NodeNavigatorComponent"
           ref={(target) => this.target = target }>
+        </div>
+        <div>
+          <BasicTable
+            data={this.props.filteredData}
+            attributes={this.props.attributes}
+            id={this.props.id}>
+
+          </BasicTable>
+
         </div>
 
       </div>

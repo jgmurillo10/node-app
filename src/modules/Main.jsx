@@ -18,6 +18,7 @@ class Main extends Component {
     super(props);
     this.state = {
       data: [],
+      filteredData: [],
       selected: "",
       properties: [],
       attributes: [],
@@ -38,8 +39,9 @@ class Main extends Component {
    })
 
   }
-  updateCallback(){
+  updateCallback(data){
     console.log('updateCallback');
+    this.setState({ filteredData: data});
   }
   deleteAttribute(i){
     let p = this.state.attributes;
@@ -99,7 +101,8 @@ class Main extends Component {
             attributes={this.state.attributes}
             data={this.state.data}
             id={this.state.selected}
-            updateCallback={this.updateCallback.bind(this)}>
+            updateCallback={this.updateCallback.bind(this)}
+            filteredData={this.state.filteredData}>
           </NodeNavigatorComponent>
             )}/>
 
