@@ -26,3 +26,12 @@
 .button-container{
   margin: auto;
 }
+.dropzone{
+  width: 100%;
+}
+.dropzone-accepted{
+  background-color: black;
+}
+.dropzone-rejected{
+  background-color: red; 
+}

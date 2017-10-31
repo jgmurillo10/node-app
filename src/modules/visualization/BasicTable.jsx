@@ -31,7 +31,6 @@ function BasicTable(props) {
         </TableHead>
         <TableBody>
           {props.data.map((n,i) => {
-            console.log(maxData,' ',i);
             if ( i > maxData ) return;
             else{
               return (
