@@ -16,7 +16,7 @@ const styles = theme => ({
 });
 function BasicTable(props) {
   const { classes } = props;
-
+  const maxData = 20;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -30,18 +30,24 @@ function BasicTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.data.map(n => {
-            return (
-              <TableRow key={n[props.id]}>
-                {
-                  props.attributes.map(k=>{
-                    return(
-                      <TableCell>{n[k.name]}</TableCell>
-                    )
-                  })
-                }
-              </TableRow>
-            );
+          {props.data.map((n,i) => {
+            console.log(maxData,' ',i);
+            if ( i > maxData ) return;
+            else{
+              return (
+                <TableRow key={n[props.id]}>
+                  {
+                    props.attributes.map((k,i)=>{
+
+                      return(
+                        <TableCell>{n[k.name]}</TableCell>
+                      )
+                    })
+                  }
+                </TableRow>
+              );
+            }
+
           })}
 
         </TableBody>
