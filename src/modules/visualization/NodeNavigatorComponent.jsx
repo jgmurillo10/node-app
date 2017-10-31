@@ -18,7 +18,8 @@ class NodeNavigatorComponent extends Component {
       .id(this.props.id)
       .updateCallback(this.props.updateCallback);
       this.props.attributes.map((d,i)=>{
-        this.nn.addCategoricalAttrib(d);
+        if(d.checked)
+          this.nn.addCategoricalAttrib(d.name);
       })
 
     if (this.props.data) {

@@ -17,7 +17,7 @@ class ProcessingAttributes extends Component {
           name={attribute.name}
           key={i}
           id={i}
-          deleteAttribute={this.props.changeAttribute}
+          changeAttribute={this.props.changeAttribute}
           >
         </Attribute>);
     })

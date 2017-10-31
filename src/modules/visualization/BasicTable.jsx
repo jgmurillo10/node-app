@@ -24,7 +24,7 @@ function BasicTable(props) {
           <TableRow>
             {props.attributes.map(n=>{
               return(
-                <TableCell>{n}</TableCell>
+                <TableCell>{n.name}</TableCell>
               )
             })}
           </TableRow>
@@ -36,14 +36,14 @@ function BasicTable(props) {
                 {
                   props.attributes.map(k=>{
                     return(
-                      <TableCell>{n[k]}</TableCell>
+                      <TableCell>{n[k.name]}</TableCell>
                     )
                   })
                 }
               </TableRow>
             );
           })}
-          
+
         </TableBody>
       </Table>
     </Paper>

@@ -14,13 +14,11 @@ const styles = {
   },
 };
 class Attribute extends Component {
-  onClickAttribute(){
-    console.log('onClickAttribute',this.props.id);
-    this.props.deleteAttribute(this.props.id);
-  }
+
   handleChange = name => (event, checked) => {
     console.log('name',name,'event',event,'checked',checked);
     this.setState({ [name]: checked });
+    this.props.changeAttribute(this.props.id);
   };
 
   state = {
@@ -29,7 +27,7 @@ class Attribute extends Component {
   render(){
     return(
         <FormControlLabel
-          className="cursor col-md-6" onClick={this.onClickAttribute.bind(this)}
+          className="cursor col-md-6"
           control={
             <Switch
               checked={this.state.checkedA}

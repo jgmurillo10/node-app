@@ -48,7 +48,9 @@ class Main extends Component {
     this.setState({ filteredData: data});
   }
   changeAttribute(i){
+    console.log(this.state.attributes);
     let atts = this.state.attributes;
+
     atts[i].checked = !atts[i].checked;
     this.setState({
       attributes: atts,
