@@ -3,14 +3,21 @@ import * as vega from 'vega';
 import { Link } from 'react-router-dom';
 import Step from './../step/Step.jsx';
 import Dropzone from 'react-dropzone';
+import styles from './load.css';
+import Error from './../Error.jsx';
+
 class Load extends Component {
   constructor(props){
     super(props);
     this.state = {
       file: null,
       enable: false,
-      files: [],
+      accepted: [],
+      rejected: [],
+      open: false,
+      finalSize: '',
     };
+
     this.state.response = {};
     this.handleDataset = this.handleDataset.bind(this);
     this.renderResponse = this.renderResponse.bind(this);
@@ -27,8 +34,20 @@ class Load extends Component {
     // const file =  event.target.files[0];
     if(file == null){
       alert('No file selected.');
+      return;
     }
     this.props.setFile(file)
+    let fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+    let fSize = file.size;
+    let i=0;
+    while(fSize>900){
+      fSize/=1024;
+      i++;
+    }
+    let finalSize = Math.round(fSize*100)/100 +' '+fSExt[i];
+    this.setState({
+      fileSize: finalSize
+    })
 
     reader.onload = (lEvent: any) => {
       const name = file.name.replace(/\.\w+$/, '');
@@ -53,7 +72,7 @@ class Load extends Component {
           <div>
             <p><strong>Name:</strong> {this.props.file.name}</p>
             <p><strong>File type: </strong>{this.props.file.type}</p>
-            <p><strong>File size: </strong>{this.props.file.size}</p>
+          <p><strong>File size: </strong>{this.state.fileSize}</p>
           </div>
     );
   }
@@ -62,47 +81,72 @@ class Load extends Component {
     }
 
   }
-  onDrop(files) {
-    console.log(files);
-    if (files.length !== 0){
-      this.handleDataset(files[0]);
+  onDrop(accepted,rejected) {
+    console.log(accepted,rejected);
+    if (accepted.length !== 0){
+      this.handleDataset(accepted[0]);
     }else{
+      this.props.setFile(null)
+      this.setState({
+        open: true,
+      })
       console.log('Type file not supported.');
     }
-    // this.setState({
-    //   files
-    // });
   }
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
   render() {
     let dropzoneRef;
-    let accepted = {
-      backgroundColor: 'black'
-    }
-    let rejected = {
-      backgroundColor: 'red'
-    }
+    const divStyle = {
+      padding: '1em',
+      margin: '0.5em',
+      border: '5px dashed lightblue',
+      width: '100%'
+    };
+    const rejectStyle = {
+      padding: '1em',
+      margin: '0.5em',
+      border: '5px solid red',
+    };
+    const acceptStyle = {
+      padding: '1em',
+      margin: '0.5em',
+      border: '5px solid green'
+    };
+
     // const comp = (<input accept=".csv,.json" onChange={this.handleDataset} type="file"/>);
     const comp = (
       <div>
-        <Dropzone
-          multiple={false}
+        <Error
+          title={'Error'}
+          errorMessage={'File type not supported. Try uploading *.csv or *.json file.'}
+          open={this.state.open}
+          handleRequestClose={this.handleRequestClose.bind(this)}
+          >
 
-          acceptStyle={accepted}
-          // rejectStyle={"dropzone-rejected"}
+        </Error>
+        <Dropzone
+          accept=".csv"
+          multiple={false}
+          style={divStyle}
+          rejectStyle={rejectStyle}
+          acceptStyle={acceptStyle}
           ref={(node) => { dropzoneRef = node; }}
-          accept=".json,.csv"
           onDrop={this.onDrop.bind(this)}>
-            <p>Try dropping some files here, click to select files to upload or click on upload file.</p>
-            <p>Only *.csv and *.json will be accepted</p>
+            {
+              this.props.file ?
+              this.renderResponse() :
+              <div>
+                <p>Try dropping some files here, click to select files to upload or click on upload file.</p>
+                <p>Only *.csv and *.json will be accepted</p>
+              </div>
+            }
+
         </Dropzone>
         <button type="button" onClick={() => { dropzoneRef.open() }}>
             Upload dataset
         </button>
-        <ul>
-              {
-                this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-              }
-        </ul>
       </div>
     );
     return (
@@ -110,15 +154,13 @@ class Load extends Component {
         <Step
           step={1}
           name={'Upload dataset'}
-          text={'please select *.json or *.csv file'}
           component={comp}
           action={this.handleDataset}
           next={'/preprocessing/id'}
           back={'/'}
           enable={this.state.enable}
           msg={'You must upload a dataset before continue.'}
-          response={this.renderResponse()}
-          responseMsg={'Dataset selected'}>
+          >
         </Step>
 
       </div>
