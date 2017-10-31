@@ -21,21 +21,25 @@ class Main extends Component {
       filteredData: [],
       selected: "",
       properties: [],
-      attributes: [],
       deleted: [],
       file: null,
+      attributes: [],
     }
+
   }
   setData(data){
     let propps = []
+    let atts = []
     for (let prop in data[0]){
+      let i = {};
+      i.name = prop;
+      i.checked = true;
+      atts.push(i);
       propps.push(prop);
     }
-    let attributes = propps.slice();
     this.setState({
       data: data,
-      properties: propps,
-      attributes: attributes
+      attributes: atts
    })
 
   }
@@ -43,24 +47,11 @@ class Main extends Component {
     console.log('updateCallback');
     this.setState({ filteredData: data});
   }
-  deleteAttribute(i){
-    let p = this.state.attributes;
-    let d = this.state.deleted;
-    let del = p.splice(i,1);
-    d.push(del);
+  changeAttribute(i){
+    let atts = this.state.attributes;
+    atts[i].checked = !atts[i].checked;
     this.setState({
-      attributes: p,
-      deleted: d
-    });
-  }
-  addAttribute(i){
-    let p = this.state.attributes;
-    let d = this.state.deleted;
-    let add = d.splice(i,1);
-    p.push(add)
-    this.setState({
-      attributes: p,
-      deleted: d
+      attributes: atts,
     })
   }
   setID(id){
@@ -86,15 +77,15 @@ class Main extends Component {
               data={this.state.data}
               setID={this.setID.bind(this)}
               properties={this.state.properties}
-              selected={this.state.selected}/>
+              selected={this.state.selected}
+              attributes={this.state.attributes}
+              />
           )}/>
         <Route path='/preprocessing/attributes' render={(props) => (
             <ProcessingAttributes {...props}
               data={this.state.data}
-              deleteAttribute={this.deleteAttribute.bind(this)}
-              addAttribute={this.addAttribute.bind(this)}
-              attributes={this.state.attributes}
-              deleted={this.state.deleted}/>
+              changeAttribute={this.changeAttribute.bind(this)}
+              attributes={this.state.attributes}/>
           )}/>
         <Route path='/visualization' render={(props) => (
           <NodeNavigatorComponent

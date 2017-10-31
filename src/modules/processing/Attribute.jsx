@@ -3,6 +3,7 @@ import './attribute.css';
 import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import Switch from 'material-ui/Switch';
+import { FormControlLabel } from 'material-ui/Form';
 const styles = {
   bar: {},
   checked: {
@@ -23,20 +24,21 @@ class Attribute extends Component {
   };
 
   state = {
-   checkedA: false
+   checkedA: true,
   };
   render(){
     return(
-      <div className="cursor" onClick={this.onClickAttribute.bind(this)}>
-        <button  className={this.props.sty + " attribute" }>{this.props.name}</button>
-        <button  className={this.props.sty + " attribute-button"}> {this.props.tag} </button>
-        <Switch
-          checked={this.state.checkedA}
-          onChange={this.handleChange('checkedA')}
-          aria-label="checkedA"
+        <FormControlLabel
+          className="cursor col-md-6" onClick={this.onClickAttribute.bind(this)}
+          control={
+            <Switch
+              checked={this.state.checkedA}
+              onChange={this.handleChange('checkedA')}
+              aria-label="checkedA"
+            />
+          }
+          label={this.props.name}
         />
-
-      </div>
     )
   }
 }
