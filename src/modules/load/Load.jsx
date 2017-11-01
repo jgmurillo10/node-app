@@ -49,9 +49,10 @@ class Load extends Component {
       i++;
     }
     let finalSize = Math.round(fSize*100)/100 +' '+fSExt[i];
-    this.setState({
-      fileSize: finalSize
-    })
+    // this.setState({
+    //   fileSize: finalSize
+    // })
+    this.props.setFileSize(finalSize);
 
     reader.onload = (lEvent: any) => {
       const name = file.name.replace(/\.\w+$/, '');
@@ -79,7 +80,7 @@ class Load extends Component {
           <div>
             <p><strong>Name:</strong> {this.props.file.name}</p>
             <p><strong>File type: </strong>{this.props.file.type}</p>
-          <p><strong>File size: </strong>{this.state.fileSize}</p>
+          <p><strong>File size: </strong>{this.props.fileSize}</p>
           </div>
     );
   }
@@ -94,6 +95,7 @@ class Load extends Component {
       this.handleDataset(accepted[0]);
     }else{
       this.props.setFile(null)
+      this.props.setFileSize('');
       this.setState({
         open: true,
       })

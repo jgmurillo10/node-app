@@ -24,24 +24,53 @@ class Main extends Component {
       deleted: [],
       file: null,
       attributes: [],
+      fileSize: '',
     }
 
   }
   setData(data){
-    let propps = []
+    console.log('setData');
     let atts = []
+    let seq = "sequential";
+    let cat = "categorical";
     for (let prop in data[0]){
       let i = {};
       i.name = prop;
       i.checked = true;
       atts.push(i);
-      propps.push(prop);
+    }
+    let count = 0;
+    /**
+    Array that loops over the element 1 of the data and guess the type of value of the attribute
+    **/
+    for (let prop in data[1]){
+      let attrib = data[1][prop]
+      if (typeof attrib === "string"){
+        let conversion = Number(attrib);
+        if (isNaN(conversion)){
+          atts[count].type = cat;
+          console.log('if',attrib,conversion,count);
+        }else{
+          console.log('else',attrib,conversion,count);
+          atts[count].type = seq;
+        }
+      }else {
+        console.log('outer else',attrib,count);
+        atts[count].type = seq;
+      }
+
+      count = count+1;
     }
     this.setState({
       data: data,
       attributes: atts
    })
 
+  }
+  setFileSize(fileSize){
+    this.setState({
+      fileSize: fileSize,
+    })
   }
   updateCallback(data){
     console.log('updateCallback');
@@ -72,7 +101,9 @@ class Main extends Component {
             <Load {...props}
               setData={this.setData.bind(this)}
               setFile={this.setFile.bind(this)}
-              file={this.state.file}/>
+              file={this.state.file}
+              fileSize={this.state.fileSize}
+              setFileSize={this.setFileSize.bind(this)}/>
           )}/>
           <Route path='/preprocessing/id' render={(props) => (
             <ProcessingID {...props}

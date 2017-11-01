@@ -4,6 +4,7 @@ import NodeNavigator from "./NodeNavigator.js";
 import { Link } from 'react-router-dom';
 import BasicTable from './BasicTable.jsx';
 let d3 = require("d3");
+const cat = "categorical";
 class NodeNavigatorComponent extends Component {
   constructor(props){
     super(props);
@@ -19,7 +20,15 @@ class NodeNavigatorComponent extends Component {
       .updateCallback(this.props.updateCallback);
       this.props.attributes.map((d,i)=>{
         if(d.checked)
-          this.nn.addCategoricalAttrib(d.name);
+        console.log(this.props.data[0]);
+          if(d.type === cat){
+            console.log('cat',d.name);
+            this.nn.addCategoricalAttrib(d.name);
+          }else {
+            console.log('seq',d.name);
+            this.nn.addSequentialAttrib(d.name);
+          }
+
       })
 
     if (this.props.data) {

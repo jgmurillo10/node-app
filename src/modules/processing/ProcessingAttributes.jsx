@@ -23,9 +23,6 @@ class ProcessingAttributes extends Component {
         </Attribute>);
     })
   }
-  updateCallback(){
-    console.log('updateCallback');
-  }
   render(){
     return(
       <div>
