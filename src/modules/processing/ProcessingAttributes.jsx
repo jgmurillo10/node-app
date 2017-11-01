@@ -15,6 +15,7 @@ class ProcessingAttributes extends Component {
       return (
         <Attribute
           name={attribute.name}
+          checked={attribute.checked}
           key={i}
           id={i}
           changeAttribute={this.props.changeAttribute}

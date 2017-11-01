@@ -30,7 +30,7 @@ class Attribute extends Component {
           className="cursor col-md-6"
           control={
             <Switch
-              checked={this.state.checkedA}
+              checked={this.props.checked}
               onChange={this.handleChange('checkedA')}
               aria-label="checkedA"
             />

@@ -37,12 +37,18 @@ class ProcessingID extends Component {
         margin: `${theme.spacing.unit}px 0`,
       },
     });
-
+    let foundId= false;
     return this.props.attributes.map((att, i) => {
+
       if (this.props.selected && this.props.selected === att.name){
             return (<Property name={att.name} key={i} id={i} setID={this.setID.bind(this)} selected={true}></Property>);
       } else{
-          return (<Property name={att.name} key={i} id={i} setID={this.setID.bind(this)} selected={false}></Property>);
+          // if (att.name.toLowerCase().includes("id") && !foundId) {
+          //   foundId = true;
+          //   return (<Property name={att.name} key={i} id={i} setID={this.setID.bind(this)} selected={true}></Property>);
+          // }else{
+            return (<Property name={att.name} key={i} id={i} setID={this.setID.bind(this)} selected={false}></Property>);
+          // }
       }
 
     })

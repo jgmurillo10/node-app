@@ -16,6 +16,7 @@ class Load extends Component {
       rejected: [],
       open: false,
       finalSize: '',
+      spinning: false,
     };
 
     this.state.response = {};
@@ -30,6 +31,9 @@ class Load extends Component {
     }
   }
   handleDataset(file){
+    this.setState({
+      spinning: true,
+    })
     const reader = new FileReader();
     // const file =  event.target.files[0];
     if(file == null){
@@ -58,6 +62,9 @@ class Load extends Component {
         values = vega.read(lEvent.target.result, {type: format});
         this.props.setData(values);
         this.setState({enable:true})
+        this.setState({
+          spinning: false,
+        })
       } catch (err) {
         window.alert(err.message);
       }
@@ -134,6 +141,14 @@ class Load extends Component {
           acceptStyle={acceptStyle}
           ref={(node) => { dropzoneRef = node; }}
           onDrop={this.onDrop.bind(this)}>
+          {
+            this.state.spinning ?
+            <div>
+              <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
+            : ''
+          }
             {
               this.props.file ?
               this.renderResponse() :
@@ -142,6 +157,8 @@ class Load extends Component {
                 <p>Only *.csv and *.json will be accepted</p>
               </div>
             }
+
+
 
         </Dropzone>
         <button type="button" onClick={() => { dropzoneRef.open() }}>
