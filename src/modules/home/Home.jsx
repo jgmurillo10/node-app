@@ -24,7 +24,7 @@ class Home extends Component {
           </div>
           <div className="col-md-10">
             <strong>NodeNavigator</strong> is a d3.js visualization widget to help summarizing, browsing and navigating large network visualizations.
-            
+
 
             <p>Steps: </p>
             <ul>
@@ -44,7 +44,7 @@ class Home extends Component {
           </div>
         </div>
         <div className="pull-center">
-            <Link className="btn loadDataButton" aria-label="load data" to={'/preprocessing/load/'}>
+            <Link className="btn loadDataButton card-1" aria-label="load data" to={'/preprocessing/load/'}>
               <div className="button-container">
                 Let's get started.
               </div>

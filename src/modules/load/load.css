@@ -4,7 +4,7 @@
   background: -o-linear-gradient(51deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   color: white;
-  border-color: white;
+
   width: 50%;
   height: 10vh;
   font-size: 2em;
@@ -14,13 +14,20 @@
   margin: auto;
   transition: letter-spacing 1s;
 }
+.card-1 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.35), 0 10px 10px rgba(0,0,0,0.22);
+}
 .pull-center {
   text-align: center;
 }
 .loadDataButton:hover {
   background-color: rgba(255,255,255,0.5);
   /*font-size: 2.4em;*/
-  letter-spacing: 3px;
+  /*letter-spacing: 3px;*/
   color: white;
 }
 .button-container{
