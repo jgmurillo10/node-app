@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import NodeNavigator from "./NodeNavigator.js";
 import { Link } from 'react-router-dom';
 import BasicTable from './BasicTable.jsx';
+import Export from './export/Export.jsx';
 let d3 = require("d3");
 const cat = "categorical";
 class NodeNavigatorComponent extends Component {
@@ -58,6 +59,13 @@ class NodeNavigatorComponent extends Component {
         <div className="breadcrumb">
           {this.getBreadcrumb()}
         </div>
+      <div>
+        <Export
+          data={this.props.filteredData}
+          >
+
+        </Export>
+      </div>
         {/* <Link to={'/preprocessing/attributes'}>Back</Link> */}
         <div
           className="NodeNavigatorComponent"

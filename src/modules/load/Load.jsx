@@ -5,6 +5,7 @@ import Step from './../step/Step.jsx';
 import Dropzone from 'react-dropzone';
 import styles from './load.css';
 import Error from './../Error.jsx';
+import Button from 'material-ui/Button';
 
 class Load extends Component {
   constructor(props){
@@ -163,9 +164,9 @@ class Load extends Component {
 
 
         </Dropzone>
-        <button type="button" onClick={() => { dropzoneRef.open() }}>
-            Upload dataset
-        </button>
+        <Button type="button" raised component="span" onClick={() => { dropzoneRef.open() }}>
+          Upload
+        </Button>
       </div>
     );
     return (

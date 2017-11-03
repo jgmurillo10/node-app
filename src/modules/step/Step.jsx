@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import './step.css';
 import { Link } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
+
 class Step extends Component {
   getBreadcrumb(){
     let i  = this.props.step;
@@ -21,6 +30,7 @@ class Step extends Component {
     });
   }
   render(){
+    const { classes } = this.props;
     return (
       <div>
         <div className="breadcrumb">
@@ -68,17 +78,23 @@ class Step extends Component {
 
             }
             <div>
-            <Link className="btn step-button" to={this.props.back}>
-              <i class="fa fa-2x fa-angle-double-left" aria-hidden="true"></i>
+            <Link className="step-button"  to={this.props.back}>
+              <Button fab color="primary" aria-label="add">
+                <i class="fa fa-2x fa-angle-double-left" aria-hidden="true"></i>
+              </Button>
             </Link>
             {
               this.props.enable ?
-              <Link className="btn step-button" to={this.props.next}>
-                <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+              <Link className="step-button" to={this.props.next}>
+                <Button fab color="primary" aria-label="add">
+                  <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                </Button>
               </Link> :
-              <div className="btn step-disabled">
-                <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
-              </div>
+              // <Link className="step-button" to={'/'} disabled>
+                <Button  fab color="primary" disabled aria-label="add" className="step-button">
+                  <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                </Button>
+              // </Link>
             }
             </div>
 

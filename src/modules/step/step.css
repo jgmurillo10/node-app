@@ -12,14 +12,8 @@
   padding-bottom: 1em;
 }
 .step-button{
-  background-color: black;
-  color: white;
   padding: 1em;
   margin: 1em;
-}
-.step-button:hover{
-  background-color: rgba(0,23,3,0.4);
-  color: black;
 }
 .step-title{
   text-transform: uppercase;
@@ -47,14 +41,14 @@
 }
 .step-disabled {
   background-color: rgba(0,0,0,0.3);
-  color: white;
+  /*color: white;
   padding: 1em;
-  margin: 1em;
+  margin: 1em;*/
 }
-.step-button {
+/*.step-button {
   box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .step-button:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.35), 0 10px 10px rgba(0,0,0,0.22);
-}
+}*/
