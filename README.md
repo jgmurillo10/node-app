@@ -1,3 +1,9 @@
+# Node Navigator App
+Project that aims to visualize huge datasets in a new, different and more informative way. Users can load a dataset in .csv format and then travel through it by drilling it down to create a new, personalized dataset. The user can then do the same thing to such dataset until an insight is found.
+
+In the future, the navigator will be able to export the new, drilled down datasets to .csv format again.
+// Should consider deleting unnecessary things here.  
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
